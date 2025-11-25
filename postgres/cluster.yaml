@@ -2,13 +2,13 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: postgres-ha
-  namespace: default
+  namespace: postgres
 spec:
   # Số instances (recommended 3 cho HA)
   instances: 3
   
 
-  
+
   # Storage configuration
   storage:
     size: 2Gi
