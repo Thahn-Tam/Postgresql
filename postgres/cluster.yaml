@@ -1,0 +1,42 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-ha
+  namespace: default
+spec:
+  # Số instances (recommended 3 cho HA)
+  instances: 3
+  
+  # Storage configuration
+  storage:
+    size: 2Gi
+    storageClass: "standard-rwo"  # GKE storage class
+  
+  # Bootstrap database
+  bootstrap:
+    initdb:
+      database: myapp
+      owner: myapp
+      secret:
+        name: postgres-credentials
+  
+  # Resources
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  
+  # Monitoring
+  monitoring:
+    enabled: true
+  
+  # High Availability - automatic failover
+  postgresql:
+    parameters:
+      max_connections: "100"
+      shared_buffers: "256MB"
+      effective_cache_size: "1GB"
+      maintenance_work_mem: "64MB"
