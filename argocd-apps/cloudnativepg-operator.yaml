@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    chart: cloudnative-pg
+    chart: c loudnative-pg
     repoURL: https://cloudnative-pg.github.io/charts
     targetRevision: 0.26.1  # Check latest version
     helm:
